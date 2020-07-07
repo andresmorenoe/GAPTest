@@ -1,0 +1,61 @@
+<div>
+
+  <h3 mat-dialog-title>Consulte aqui el cliente</h3>
+  <div>
+    <mat-form-field color="accent">
+      <input matInput #input placeholder="Numero de Documento" [(ngModel)]="documento" name="documento" required>
+      <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <button mat-button (click)="onSearch(documento)">Consultar</button>
+  </div>
+
+  <div *ngIf="existeCliente;else elseBlock">
+
+    <h3 mat-dialog-title>Agregar Cliente</h3>
+    <form (ngSubmit)="submit" #formControl="ngForm">
+
+      <div>
+        <mat-form-field color="accent">
+          <input matInput #input placeholder="Tipo Documento" name="tipoDocumento" required>  <!--[(ngModel)]="data.id"-->
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #inputstate placeholder="Numero Documento" name="documento" maxlength="10" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #inputstate placeholder="Nombres" name="nombres" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #inputstate placeholder="Apellidos" name="apellidos" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form">
+        <mat-form-field color="accent">
+          <input matInput #inputstate placeholder="Correo" name="correo">
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions>
+        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+        <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      </div>
+    </form>
+
+  </div>
+  <ng-template #elseBlock>El numero de documento consultado ya existe como cliente</ng-template>
+</div>
+  

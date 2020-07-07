@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SegurosTestGAP.Dominio\SegurosTestGAP.Dominio.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Clientes\Consultas\ObtenerPolizas\" />
+    <Folder Include="Polizas\Consultas\ObtenerPolizasSinAsignar\" />
+    <Folder Include="Roles\Consultas\ObtenerRoles\" />
+    <Folder Include="Usuarios\Comandos\Crear\" />
+    <Folder Include="Usuarios\Consultas\ObtenerUsuario\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>

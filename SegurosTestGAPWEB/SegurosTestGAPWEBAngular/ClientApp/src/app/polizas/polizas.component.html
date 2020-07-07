@@ -1,0 +1,78 @@
+<div>
+
+  <h3 mat-dialog-title>Polizas</h3>
+
+  <form (ngSubmit)="submit" #formControl="ngForm">
+
+    <div>
+      <mat-form-field color="accent">
+        <input matInput #input placeholder="Nombre" name="nombre" [(ngModel)]="nombre" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field color="accent">
+        <input matInput #input placeholder="Descripción" name="descripcion" [(ngModel)]="descripcion" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Inicio Vigencia</mat-label>
+        <input matInput [matDatepicker]="picker" name="vigencia" [(ngModel)]="vigencia" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Periodo Cobertura" name="periodo" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #inputstate placeholder="Porcentaje Cobertura" name="porcentaje" maxlength="3" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        <mat-hint align="end">{{inputstate.value?.length || 0}}/3</mat-hint>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput type="number" placeholder="Precio" name="precio" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Tipo Riesgo</mat-label>
+        <mat-select>
+          <mat-option value="option">Option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <mat-label>Tipo Cubrimiento</mat-label>
+        <mat-select [(ngModel)]="tipoCubrimiento" name="tipoCubrimiento">
+          <mat-option *ngFor="let tiposCubrimientos of tipoCubrimiento" [value]="tiposCubrimientos">
+            {{tiposCubrimientos}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Crear</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </form>
+
+</div>
